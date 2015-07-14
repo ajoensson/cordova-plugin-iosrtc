@@ -25,7 +25,11 @@ class PluginMediaStreamRenderer : RTCEAGLVideoViewDelegate {
 		self.videoView = RTCEAGLVideoView()
 
 		self.webView.addSubview(self.elementView)
-		self.webView.bringSubviewToFront(self.elementView)
+		self.webView.sendSubviewToBack(self.elementView)
+        self.webView.allowsInlineMediaPlayback = true
+        self.webView.mediaPlaybackRequiresUserAction = false
+        self.webView.opaque = false
+        self.webView.backgroundColor = UIColor.clearColor()
 
 		self.elementView.userInteractionEnabled = false
 		self.elementView.hidden = true
@@ -78,7 +82,7 @@ class PluginMediaStreamRenderer : RTCEAGLVideoViewDelegate {
 			return
 		}
 
-		var oldRtcVideoTrack: RTCVideoTrack? = self.rtcVideoTrack
+		let oldRtcVideoTrack: RTCVideoTrack? = self.rtcVideoTrack
 
 		self.rtcAudioTrack = nil
 		self.rtcVideoTrack = nil
@@ -141,8 +145,8 @@ class PluginMediaStreamRenderer : RTCEAGLVideoViewDelegate {
 
 		NSLog("PluginMediaStreamRenderer#refresh() [elementLeft:\(elementLeft), elementTop:\(elementTop), elementWidth:\(elementWidth), elementHeight:\(elementHeight), videoViewWidth:\(videoViewWidth), videoViewHeight:\(videoViewHeight), visible:\(visible), opacity:\(opacity), zIndex:\(zIndex), mirrored:\(mirrored), clip:\(clip)]")
 
-		var videoViewLeft: Float = (elementWidth - videoViewWidth) / 2
-		var videoViewTop: Float = (elementHeight - videoViewHeight) / 2
+		let videoViewLeft: Float = (elementWidth - videoViewWidth) / 2
+		let videoViewTop: Float = (elementHeight - videoViewHeight) / 2
 
 		self.elementView.frame = CGRectMake(
 			CGFloat(elementLeft),

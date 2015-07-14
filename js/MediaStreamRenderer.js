@@ -142,7 +142,8 @@ MediaStreamRenderer.prototype.refresh = function () {
 
 	// mirrored (detect "-webkit-transform: scaleX(-1);" or equivalent)
 	if (computedStyle.transform === 'matrix(-1, 0, 0, 1, 0, 0)' ||
-		computedStyle['-webkit-transform'] === 'matrix(-1, 0, 0, 1, 0, 0)') {
+		computedStyle['-webkit-transform'] === 'matrix(-1, 0, 0, 1, 0, 0)' ||
+        this.element.classList.contains('self-view')) {
 		mirrored = true;
 	} else {
 		mirrored = false;

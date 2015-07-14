@@ -177,7 +177,7 @@ class PluginMediaStreamRenderer : RTCEAGLVideoViewDelegate {
 			self.elementView.hidden = true
 		}
 
-		self.elementView.alpha = CGFloat(opacity)
+		self.elementView.alpha = 1.0//CGFloat(opacity)
 		self.elementView.layer.zPosition = CGFloat(zIndex)
 
 		if !mirrored {
